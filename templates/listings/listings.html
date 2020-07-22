@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+   <!-- Showcase -->
+   <section id="showcase">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+          <h1 class="display-4 mb-4">
+            PRETRAGA
+          </h1>
+          <p class="lead">NAPOMENA: Pretraga se vrši srpskom latiniciom</p>
+          <div class="search">
+            <form action="{% url 'search' %}">
+              <!-- Form Row 1 -->
+              <div class="form-row">
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Naslov knjige">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <input type="text" name="ime_p" class="form-control" placeholder="Ime pisca">
+                </div>
+
+                <div class="col-md-4 mb-3">
+                  <label class="sr-only">City</label>
+                  <input type="text" name="prezime_p" class="form-control" placeholder="Prezime pisca">
+                </div>
+              </div>
+              <button class="btn btn-secondary btn-block mt-4" type="submit">PRETRAŽI</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Početna</a>
+          </li>
+          <li class="breadcrumb-item active">Posada Biblioteka</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listings -->
+  <section id="listings" class="py-4">
+    <div class="container">
+      <h3 class="text-center mb-3">Sadržaj biblioteke</h3>
+      <div class="row">
+
+        {%  if listings %}
+          {% for listing in listings %}
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card listing-preview">
+              <img class="card-img-top" src="{% static 'img/p_logo.jpg' %}" alt="">
+              <div class="card-img-overlay">
+    
+              </div>
+              <div class="card-body">
+                <div class="listing-heading text-center">
+                  <h4 class="text-primary"><i class="fa fa-book" aria-hidden="true"></i> {{ listing.naslov_knjige }}</h4>
+                  <p> <i class="fas fa-pen-alt"></i> {{ listing.ime_pisca }} {{ listing.prezime_pisca }}</p>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary">
+                  <div class="col-6">
+                    <i class="glyphicon glyphicon-font"></i> Jezik: {{ listing.jezik }}</div>
+                  <div class="col-6">
+                    Pismo: {{ listing.pismo }}</div>
+                </div>
+                <div class="row py-2 text-secondary">
+                  <div class="col-6">
+                     Veličina: {{ listing.velicina}}</div>
+                  <div class="col-6">
+                     Dostupno: {{ listing.dostupno }}</div>
+                </div>
+                <hr>
+                <a href="{% url 'listing' listing.id %}" class="btn btn-primary btn-block">Više</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div class="col-md-12">
+            <p>Ne postoji rezultat za uneti upit</p>
+          </div>
+        {% endif %}
+      </div>
+      
+      <div class="row">
+        <div class="col-md-12">
+          {% if listings.has_other_pages %}
+            <ul class="pagination">
+              {% if listings.has_previous %}
+                <li class="page-item">
+                  <a href="?page={{ listings.previous_page_number }}" class="page-link">
+                    &laquo;
+                  </a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&laquo;</a>
+                </li>  
+              {% endif %}
+              {% for i in listings.paginator.page_range %}
+                {% if listings.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link">{{ i }}</a>
+                  </li>
+                {% else %}
+                  <li class="page-item">
+                    <a href="?page={{ i }}" class="page-link">{{ i }}</a>
+                  </li>
+                {% endif %}
+              {% endfor %}
+              {% if listings.has_next %}
+                <li class="page-item">
+                  <a href="?page={{ listings.next_page_number }}" class="page-link">
+                    &raquo;
+                  </a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link">&raquo;</a>
+                </li>  
+              {% endif %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

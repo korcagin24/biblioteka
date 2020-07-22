@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section id="showcase-about">
+    <div class="container text-center">
+      <div class="home-search p-5">
+        <div class="overlay p-5">
+          <h1 class="display-4 mb-4">
+            O NAMA
+          </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">
+              <i class="fas fa-home"></i> Početna</a>
+          </li>
+          <li class="breadcrumb-item active"> O nama</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section id="about" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>POSADA - KNjIŽEVNA AVANTURA</h2>
+          <p class="lead">Jezik je živ onoliko koliko se na njemu stvara i kreativno umire.
+            <br>
+            U toj feniks borbi nema kraja kao uostalom ni samom jeziku.</p>
+          <img src="{% static 'img/pisaca_cop.jpg' %}" alt="">
+          <p class="mt-4"><span style="font-weight: bold;">Zadatak:</span>  <br>
+
+            Zadatak Posade Književne Avanture je da zaživi, opstane i što duže traje uprkos svemu . <br> <br>
+            
+            <span style="font-weight: bold;">Cilj:</span> <br>
+            
+            Cilj Posade Književne Avanture je da ispuni zadatak. <br> <br>
+            
+            
+            <span style="font-weight: bold;">Načela:</span> <br>
+            
+            Posada se rukovodi sa dva osnovna načela koja glase: <br> <br>
+            
+            <span style="font-weight: bold;">1. Sve poseduje manjkavosti</span> <br>    
+            
+            <span style="font-weight: bold;">2. Sve se može poboljšati</span> <br> <br>
+            
+            
+            Svaka pomoć bi umanjila manjkavosti i istovremeno omogućila da se drugo načelo brže i kvalitetnije izrazi.
+            </p>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4">{{ listing.naslov_knjige }}</h1>
+          <p class="lead">
+            {{ listing.ime_pisca }} {{ listing.prezime_pisca }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-3">
+    <div class="container">
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'index' %}">Početna</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'listings' %}">Sadržaj Biblioteke</a>
+          </li>
+          <li class="breadcrumb-item active">{{ listing.naslov_knjige }} -> {{ listing.ime_pisca }} {{ listing.prezime_pisca }} </li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Listing -->
+  <section id="listing" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9">
+          <!-- Fields -->
+          <div class="row mb-5 fields">
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                   Jezik:
+                  <span class="float-right">{{ listing.jezik }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                   Veličina:
+                  <span class="float-right">{{ listing.velicina }}</span>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-secondary">
+                    Pismo:
+                  <span class="float-right">{{ listing.pismo }}</span>
+                </li>
+                <li class="list-group-item text-secondary">
+                  Dostupno:
+                  <span class="float-right">{{ listing.dostupno }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+         <a href="{{ listing.link }}" target="_blank" style="background-color: yellow; border: 2px dotted black; font-size: 35px; padding:10px"> PREUZMI</a> 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="showcase-inner" class="py-5 text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12">
+          <h1 class="display-4" style="font-weight:bold ">
+            Sve poseduje manjkavosti
+            <hr>
+            Sve se može poboljšati</h1>
+            <hr>
+            <img src="{% static 'img/p_logo.jpg' %}" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
